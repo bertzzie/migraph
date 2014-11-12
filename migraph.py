@@ -17,7 +17,6 @@ class MiGraph(object):
         self.__adj_list = adj_list
 
     def vertices(self):
-        print(self.__adj_list)
         return sorted(list(self.__adj_list.keys()))
 
     def edges(self):
