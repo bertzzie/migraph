@@ -29,6 +29,9 @@ class MiGraph(object):
 
         return e
 
+    def is_adjacent(self, v1, v2):
+        return v2 in self.__adj_list[v1]
+
     def add_vertex(self, vertex):
         if vertex not in self.__adj_list:
             self.__adj_list[vertex] = {}
@@ -63,3 +66,14 @@ class MiGraph(object):
             return self.__adj_list[v1][v2]
 
         raise ValueError(self.__GET_WEIGHT_ERROR.format(v1, v2))
+
+    def remove_vertex(self, vertex):
+        self.__adj_list.pop(vertex, None)
+
+        for v in self.__adj_list:
+            if vertex in v:
+                v.pop(vertex)
+
+    def remove_edge(self, v1, v2):
+        return self.__adj_list[v1].pop(v2, None)
+
