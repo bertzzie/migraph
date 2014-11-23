@@ -3,12 +3,13 @@ import unittest
 
 from migraph import MiGraph
 
+
 class TestMiGraphVertex(unittest.TestCase):
     def setUp(self):
         self.graph = MiGraph()
 
     def tearDown(self):
-        self.graph = None
+        self.graph.clear_graph()
 
     def test_addVertex(self):
         self.graph.add_vertex('a')
@@ -24,6 +25,7 @@ class TestMiGraphVertex(unittest.TestCase):
         self.assertTrue('e' in self.graph.vertices())
 
     def test_isAdjacent(self):
+        self.graph.clear_graph()
         vertices = ['a', 'b', 'c', 'd']
         edges    = [('a', 'b', 10), ('b', 'd', 2)]
         self.graph.add_vertices(vertices)
@@ -34,6 +36,7 @@ class TestMiGraphVertex(unittest.TestCase):
         self.assertFalse(self.graph.is_adjacent('c', 'd'))
 
     def test_removeVertex(self):
+        self.graph.clear_graph()
         vertices = ['a', 'b', 'c', 'd']
         edges    = [('b', 'c', 10), ('b', 'd', 2)]
         self.graph.add_vertices(vertices)
@@ -104,13 +107,50 @@ class TestMiGraphEdge(unittest.TestCase):
         self.graph.add_vertices(['a', 'b', 'c', 'd'])
         self.graph.add_edge(('a', 'b', 2))
         self.graph.add_edge(('a', 'c', 4))
-
         self.assertTrue(self.graph.is_adjacent('a', 'b'))
-
         self.graph.remove_edge('a', 'b')
-
         self.assertFalse(self.graph.is_adjacent('a', 'b'))
 
+class TestMiGraphTraversal(unittest.TestCase):
+    def setUp(self):
+        self.graph = MiGraph()
+
+    def tearDown(self):
+        self.graph = None
+
+    def test_BFS(self):
+        self.graph.clear_graph()
+        vertices = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o']
+        edges    = [
+            ('a', 'b', 1),('a', 'c', 1),
+            ('b','d',1),('b','e',1),
+            ('d','h',1),('d','i',1),
+            ('e','j',1),('e','k',1),
+            ('c','f',1),('c','g',1),
+            ('f','l',1),('f','m',1),
+            ('g','n',1),('g','o',1)
+            ]
+        self.graph.add_vertices(vertices)
+        self.graph.add_edges(edges)
+        print("BFS")
+        print(self.graph.BFS_traversal('a'))
+
+    def test_DFS(self):
+        self.graph.clear_graph()
+        vertices = ['a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o']
+        edges    = [
+            ('a', 'b', 1),('a', 'c', 1),
+            ('b','d',1),('b','e',1),
+            ('d','h',1),('d','i',1),
+            ('e','j',1),('e','k',1),
+            ('c','f',1),('c','g',1),
+            ('f','l',1),('f','m',1),
+            ('g','n',1),('g','o',1)
+            ]
+        self.graph.add_vertices(vertices)
+        self.graph.add_edges(edges)
+        print("DFS")
+        print(self.graph.DFS_traversal('a'))
 
 if __name__ == '__main__':
     unittest.main()
