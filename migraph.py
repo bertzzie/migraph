@@ -114,7 +114,6 @@ class MiGraph(object):
         time = time + 1
 
     def BFS_traversal(self, s):
-        global i
         traversal = {}
         self.__color = {}
         self.__distance = {}
