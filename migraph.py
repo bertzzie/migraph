@@ -85,20 +85,19 @@ class MiGraph(object):
         self.__distance = {}
         self.__adj_list = {}
 
-    def DFS_traversal(self,s):
-        global i
+    def DFS_traversal(self,s, i = 1):
         traversal = {}
         i = 1
         for u in self.__adj_list.keys():
             self.__color[u] = "WHITE"
         time = 0
-        #for u in self.__adj_list.keys():
+
         if self.__color[s] == "WHITE":
             self.DFS_visit(s,time,traversal)
         return traversal
 
     def DFS_visit(self,u,time,traversal):
-        global i
+        i = 0
         if u not in self.__predecessor.keys():
             traversal[i] = {"nil":u}
         else:
