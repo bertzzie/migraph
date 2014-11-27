@@ -1,5 +1,6 @@
 from migraph import MiGraph
 from mst import prims
+import random
 
 edges = [('a', 'e', 1),
          ('a', 'b', 3),
@@ -21,7 +22,7 @@ g = MiGraph()
 g.add_vertices(vertices)
 g.add_edges(edges)
 
-res = prims(g, 3)
+res = prims(g, random.randint(0, len(vertices)-1))
 print(res.vertices())
 print(res.edges())
 
