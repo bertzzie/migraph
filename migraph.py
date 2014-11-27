@@ -13,8 +13,14 @@ class MiGraph(object):
     No vertex {0} in graph.
     """
 
-    def __init__(self, adj_list = {}):
-        self.__adj_list = adj_list
+    # Fix default parameter bug where
+    # all instances will have same data
+    # see: http://stackoverflow.com/questions/22032315/default-initializer-points-to-same-data-for-all-instances-of-object
+    def __init__(self, adj_list = None):
+        if adj_list is None:
+            self.__adj_list = {}
+        else:
+            self.__adj_list = adj_list
 
     def vertices(self):
         return sorted(list(self.__adj_list.keys()))
