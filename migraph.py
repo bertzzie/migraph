@@ -35,6 +35,16 @@ class MiGraph(object):
 
         return e
 
+    def edges_with_weight(self):
+        e = []
+        for vertex in self.__adj_list:
+            for neighbour, weight in self.__adj_list[vertex].items():
+                edge = (vertex, neighbour, weight)
+                if edge not in e:
+                    e.append(edge)
+
+        return e
+
     def is_adjacent(self, v1, v2):
         return v2 in self.__adj_list[v1]
 

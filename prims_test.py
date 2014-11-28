@@ -1,5 +1,6 @@
 from migraph import MiGraph
 from mst import prims
+from mst import kruskal
 import random
 
 edges = [('a', 'e', 1),
@@ -15,7 +16,7 @@ edges = [('a', 'e', 1),
          ('d', 'c', 3),
          ('e', 'a', 1),
          ('e', 'b', 2),
-         ('e', 'c', 3)]
+         ('e', 'c', 7)]
 vertices = ['a', 'b', 'c', 'd', 'e']
 g = MiGraph()
 
@@ -23,6 +24,9 @@ g.add_vertices(vertices)
 g.add_edges(edges)
 
 res = prims(g, random.randint(0, len(vertices)-1))
+krs = kruskal(g)
+
 print(res.vertices())
 print(res.edges())
 
+print(krs)
